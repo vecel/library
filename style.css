@@ -1,0 +1,30 @@
+html, body {
+    min-height: 100vh;
+    height: 100%;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.books-container {
+    width: 40vw;
+    background-color: red;
+}
+
+.floating-action-button {
+    border: none;
+    background-color: blue;
+    padding: 12px 24px;
+    border-radius: 50px;
+}
+
+.new-book {
+    position: fixed;
+    bottom: 6vh;
+    right: 12vh;
+}
