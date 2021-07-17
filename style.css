@@ -11,20 +11,36 @@ body {
     align-items: stretch;
 }
 
+.material-icons-outlined {
+    font-size: 24px;
+    margin: 0 6px 0 0;
+}
+
+.background {
+    background-color: aliceblue;
+}
+
 .books-container {
     width: 40vw;
-    background-color: red;
+    background-color: rgb(241, 168, 168);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
 }
 
 .floating-action-button {
     border: none;
-    background-color: blue;
+    background-color: rgb(184, 43, 197);
     padding: 12px 24px;
     border-radius: 50px;
+    font-size: medium;
 }
 
 .new-book {
-    position: fixed;
-    bottom: 6vh;
-    right: 12vh;
+	position: fixed;
+	bottom: 3vh;
+	right: 33vw;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }
