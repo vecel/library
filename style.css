@@ -44,3 +44,9 @@ body {
 	flex-direction: row;
 	align-items: center;
 }
+
+.book-record {
+    display: grid;
+    grid-template-columns: 25px 30% 25% 15% 10%;
+    padding: 10px 12px;
+}

@@ -24,7 +24,6 @@ for (let book of library) displayBook(book);
 
 
 
-
 function addBook() {
     /* show dialog window and ask for book properties */
 
@@ -44,7 +43,29 @@ function addBook() {
 
 function displayBook(book) {
     const container = document.createElement('div');
-    container.textContent = book.info();
+    container.classList += 'book-record';
+
+    const idDiv = document.createElement('div');
+    idDiv.textContent = book.id;
+
+    const titleDiv = document.createElement('div');
+    titleDiv.textContent = book.title;
+
+    const authorDiv = document.createElement('div');
+    authorDiv.textContent = book.author;
+
+    const pagesDiv = document.createElement('div');
+    pagesDiv.textContent = `${book.pages} pages`;
+
+    const isReadDiv = document.createElement('div');
+    isReadDiv.textContent = book.isRead;
+
+    container.appendChild(idDiv);
+    container.appendChild(titleDiv);
+    container.appendChild(authorDiv);
+    container.appendChild(pagesDiv);
+    container.appendChild(isReadDiv);
+
     booksContainer.appendChild(container);
 }
 
