@@ -1,3 +1,6 @@
+const booksContainer = document.querySelector('.books-container');
+const addBookButton = document.querySelector('.new-book');
+
 function Book (id, title, author, pages, isRead) {
     this.id = id;
     this.title = title;
@@ -15,7 +18,16 @@ const lettersFromGrave = new Book(1, 'Listy Zza Grobu', 'Remigiusz Mróz', 457, 
 
 let library = [theHobbit, lettersFromGrave];
 
+addBookButton.addEventListener('click', addBook);
+
+for (let book of library) displayBook(book);
+
+
+
+
 function addBook() {
+    /* show dialog window and ask for book properties */
+
     const bookInfo = prompt('Enter book title / author / number of pages / is book read (true or false)').split('/');
 
     const id = library.length;
@@ -26,9 +38,15 @@ function addBook() {
 
     const book = new Book(id, title, author, pages, isRead);
     library.push(book);
+
+    displayBook(book);
 }
 
-// addBook();
+function displayBook(book) {
+    const container = document.createElement('div');
+    container.textContent = book.info();
+    booksContainer.appendChild(container);
+}
 
 // console.log(Book.prototype);
 console.table(library);
