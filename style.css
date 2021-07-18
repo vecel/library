@@ -1,3 +1,8 @@
+:root {
+    --card-color: rgb(252, 243, 252);
+    --background: rgb(247, 195, 223);
+}
+
 html, body {
     min-height: 100vh;
     height: 100%;
@@ -6,9 +11,14 @@ html, body {
 }
 
 body {
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
+    display: grid;
+    grid-template-columns: 15vw 1fr 10vw;
+    grid-template-rows: 15vh 1fr;
+    background-color: var(--background);
+}
+
+header {
+    grid-column: 1 / 4;
 }
 
 .material-icons-outlined {
@@ -16,12 +26,8 @@ body {
     margin: 0 6px 0 0;
 }
 
-.background {
-    background-color:rgb(247, 195, 223);
-}
-
 .books-container {
-    width: 40vw;
+    width: 100%;
     display: flex;
     align-items: flex-start;
 }
@@ -37,54 +43,43 @@ body {
 .new-book {
 	position: fixed;
 	bottom: 3vh;
-	right: 33vw;
+	right: 14vw;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 }
 
-.book-record {
+.item {
+    width: 350px;
+    margin: 6px;
+    position: relative;
+    background-color: var(--card-color);
+    border-radius: 10px;
+    box-shadow: 0 0 10px -2px gray;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: stretch;
-    padding: 20px;
-    border: 1px solid #555;
-    margin: 2px;
-    min-width: 7vw;
+    color: #4c4c4c;
 }
 
 .card-content {
-    margin: 3px 2px;
+    margin: 8px 12px;
 }
 
-.is-read {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.book-status {
-    margin: 0 6px;
-    padding: 4px;
-    border-radius: 4px;
-}
-
-.read {
-    background-color: greenyellow;
+.title{
     color: black;
+    margin: 16px 12px;
 }
 
-.not-read {
-    background-color: red;
-    color: white;
-}
-
-.delete-record {
-    border: none;
+.rating {
+    margin-top: 32px;
+    margin-bottom: 20px;
     display: flex;
-    align-items: center;
-    font-size: medium;
-    margin-top: 6px;
-    background-color: violet;
+    justify-content: center;
 }
+
+.rating-star {
+    color: gold;    
+    font-size: 26px;
+}
+
