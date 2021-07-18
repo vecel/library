@@ -42,29 +42,26 @@ function addBook() {
 }
 
 function displayBook(book) {
-    const container = document.createElement('div');
-    container.classList += 'book-record';
+    const item = document.createElement('div');
+    item.classList += 'item';
 
-    const recordContent = 
-        `<div class="card-content">${book.title}</div>
-        <div class="card-content">${book.author}</div>
-        <div class="card-content">${book.pages}</div>
-        <div class="is-read">is read?
-        <span class="material-icons-outlined book-status ${book.isRead ? 'read' : 'not-read'}">book</span>
-        </div>
-        <button class="card-content delete-record">
-        <span class="material-icons-outlined">close</span>
-        Usuń
-        </button>`;
+    const itemContent = 
+        `<div class="card-content title"><h2>${book.title}</h2></div>
+        <div class="card-content">Author: ${book.author}</div>
+        <div class="card-content">Pages: ${book.pages}</div>
+        <div class="card-content is-read">Read: ${book.isRead ? 'YES' : 'NO'}</div>
+        <div class="card-content rating">
+        <span class="material-icons-outlined rating-star">grade</span>
+        <span class="material-icons-outlined rating-star">grade</span>
+        <span class="material-icons-outlined rating-star">grade</span>
+        <span class="material-icons-outlined rating-star">grade</span>
+        <span class="material-icons-outlined rating-star">grade</span>
+        </div>`;
 
-    container.innerHTML = recordContent;
+    item.innerHTML = itemContent;
 
-    booksContainer.appendChild(container);
+    booksContainer.appendChild(item);
 
-    const isReadButton = container.querySelector('.book-status');
-    isReadButton.addEventListener('click', () => {
-        // get book by id
-    });
 }
 
 // console.log(Book.prototype);
