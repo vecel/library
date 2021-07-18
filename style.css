@@ -17,15 +17,13 @@ body {
 }
 
 .background {
-    background-color: aliceblue;
+    background-color:rgb(247, 195, 223);
 }
 
 .books-container {
     width: 40vw;
-    background-color: rgb(241, 168, 168);
     display: flex;
-    flex-direction: column;
-    align-items: stretch;
+    align-items: flex-start;
 }
 
 .floating-action-button {
@@ -46,7 +44,47 @@ body {
 }
 
 .book-record {
-    display: grid;
-    grid-template-columns: 25px 30% 25% 15% 10%;
-    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    padding: 20px;
+    border: 1px solid #555;
+    margin: 2px;
+    min-width: 7vw;
+}
+
+.card-content {
+    margin: 3px 2px;
+}
+
+.is-read {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.book-status {
+    margin: 0 6px;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.read {
+    background-color: greenyellow;
+    color: black;
+}
+
+.not-read {
+    background-color: red;
+    color: white;
+}
+
+.delete-record {
+    border: none;
+    display: flex;
+    align-items: center;
+    font-size: medium;
+    margin-top: 6px;
+    background-color: violet;
 }

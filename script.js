@@ -14,7 +14,7 @@ Book.prototype.info = function() {
 }
 
 const theHobbit = new Book(0, 'The Hobbit', 'J.R.R. Tolkien', 295, true);
-const lettersFromGrave = new Book(1, 'Listy Zza Grobu', 'Remigiusz Mróz', 457, true);
+const lettersFromGrave = new Book(1, 'Listy Zza Grobu', 'Remigiusz Mróz', 457, false);
 
 let library = [theHobbit, lettersFromGrave];
 
@@ -45,28 +45,26 @@ function displayBook(book) {
     const container = document.createElement('div');
     container.classList += 'book-record';
 
-    const idDiv = document.createElement('div');
-    idDiv.textContent = book.id;
+    const recordContent = 
+        `<div class="card-content">${book.title}</div>
+        <div class="card-content">${book.author}</div>
+        <div class="card-content">${book.pages}</div>
+        <div class="is-read">is read?
+        <span class="material-icons-outlined book-status ${book.isRead ? 'read' : 'not-read'}">book</span>
+        </div>
+        <button class="card-content delete-record">
+        <span class="material-icons-outlined">close</span>
+        Usuń
+        </button>`;
 
-    const titleDiv = document.createElement('div');
-    titleDiv.textContent = book.title;
-
-    const authorDiv = document.createElement('div');
-    authorDiv.textContent = book.author;
-
-    const pagesDiv = document.createElement('div');
-    pagesDiv.textContent = `${book.pages} pages`;
-
-    const isReadDiv = document.createElement('div');
-    isReadDiv.textContent = book.isRead;
-
-    container.appendChild(idDiv);
-    container.appendChild(titleDiv);
-    container.appendChild(authorDiv);
-    container.appendChild(pagesDiv);
-    container.appendChild(isReadDiv);
+    container.innerHTML = recordContent;
 
     booksContainer.appendChild(container);
+
+    const isReadButton = container.querySelector('.book-status');
+    isReadButton.addEventListener('click', () => {
+        // get book by id
+    });
 }
 
 // console.log(Book.prototype);
