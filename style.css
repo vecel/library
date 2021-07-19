@@ -8,13 +8,14 @@ html, body {
     height: 100%;
     margin: 0;
     overflow-x: hidden;
+    background-color: var(--background);
 }
 
-body {
+main {
+    height: 100%;
     display: grid;
-    grid-template-columns: 15vw 1fr 10vw;
+    grid-template-columns: 15vw 1fr 20vw;
     grid-template-rows: 15vh 1fr;
-    background-color: var(--background);
 }
 
 header {
@@ -32,6 +33,21 @@ header {
     align-items: flex-start;
 }
 
+.blur {
+    filter: blur(4px);
+}
+
+.book-insert {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 48px;
+    width: calc(100% - 96px);
+    height: calc(100% - 96px);
+    background-color: red;
+}
+
 .floating-action-button {
     border: none;
     background-color: rgb(184, 43, 197);
@@ -43,7 +59,7 @@ header {
 .new-book {
 	position: fixed;
 	bottom: 3vh;
-	right: 14vw;
+	right: 24vw;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -51,6 +67,7 @@ header {
 
 .item {
     width: 350px;
+    height: 350px;
     margin: 6px;
     position: relative;
     background-color: var(--card-color);
@@ -63,17 +80,17 @@ header {
 }
 
 .card-content {
-    margin: 8px 12px;
+    margin: 8px 20px;
 }
 
 .title{
     color: black;
-    margin: 16px 12px;
+    margin-top: 16px;
+    margin-bottom: 16px;
 }
 
 .rating {
-    margin-top: 32px;
-    margin-bottom: 20px;
+    margin-bottom: 32px;
     display: flex;
     justify-content: center;
 }
@@ -83,3 +100,27 @@ header {
     font-size: 26px;
 }
 
+.vertical-line {
+    border-left: 1px solid #707070;
+}
+
+.book-info {
+    position: fixed;
+    top: 96px;
+    left: 30%;
+    width: 40%;
+    height: 80%;
+    background-color: red;
+    display: none; /* toggle to flex */
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.book-info-content {
+    height: 48px;
+    margin: 6px 12px;
+}
+
+.flex-end {
+    margin-top: auto;
+}
