@@ -1,5 +1,14 @@
 const booksContainer = document.querySelector('.books-container');
 const addBookButton = document.querySelector('.new-book');
+const bookDetailsDialog = document.querySelector('#book-information');
+const bookDetails = {
+    title: bookDetailsDialog.querySelector('#title-input'),
+    author: bookDetailsDialog.querySelector('#author-input'),
+    pages: bookDetailsDialog.querySelector('#pages-input'),
+    status: bookDetailsDialog.querySelector('#status-input'),
+    rating: bookDetailsDialog.querySelector('#rating-input')
+}
+
 
 function Book (id, title, author, pages, isRead, rating, insertionDate, readDate) {
     this.id = id;
@@ -29,18 +38,21 @@ for (let book of library) displayBook(book);
 function addBook() {
     /* show dialog window and ask for book properties */
 
-    const bookInfo = prompt('Enter book title / author / number of pages / is book read (true or false)').split('/');
+    // const bookInfo = prompt('Enter book title / author / number of pages / is book read (true or false)').split('/');
 
-    const id = library.length;
-    const title = bookInfo[0];
-    const author = bookInfo[1];
-    const pages = bookInfo[2].toString();
-    const isRead = bookInfo[3] == 'true' ? true : false;
+    showBookDetailsDialog();
+    setBookDetailsContent();
 
-    const book = new Book(id, title, author, pages, isRead);
-    library.push(book);
+    // const id = library.length;
+    // const title = bookInfo[0];
+    // const author = bookInfo[1];
+    // const pages = bookInfo[2].toString();
+    // const isRead = bookInfo[3] == 'true' ? true : false;
 
-    displayBook(book);
+    // const book = new Book(id, title, author, pages, isRead);
+    // library.push(book);
+
+    // displayBook(book);
 }
 
 function displayBook(book) {
@@ -73,4 +85,15 @@ function displayBook(book) {
     })
 
     booksContainer.appendChild(item);
+}
+
+function showBookDetailsDialog() {
+    bookDetailsDialog.style.display = 'flex';
+}
+
+function setBookDetailsContent(book) {
+    bookDetails.title.value = book === undefined ? '' : book.title;
+    bookDetails.author.value = book === undefined ? '' : book.author;
+    bookDetails.pages.value = book === undefined ? '' : book.pages;
+    bookDetails.status.checked = book === undefined ? false : book.isRead;
 }
