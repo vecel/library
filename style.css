@@ -24,10 +24,13 @@ header {
 
 input {
     border: none;
-    margin: 6px 0;;
     background-color: var(--background);
     padding: 12px 4px;
     font-size: medium;
+}
+
+input, .switch, .rating-container {
+    margin: 6px 0;
 }
 
 input:focus {
@@ -175,7 +178,12 @@ button {
 .rating-star {
     color: gold;    
     font-size: 26px;
+    user-select: none;
 }
+
+/* .editable:hover {
+    
+} */
 
 .vertical-line {
     border-left: 1px solid #707070;
@@ -188,7 +196,7 @@ button {
     width: 40%;
     height: 80%;
     background-color: var(--card-color);
-    display: flex; /* toggle to flex */
+    display: none; /* toggle to flex */
     flex-direction: column;
     align-items: stretch;
 }
@@ -201,6 +209,14 @@ button {
 
 .flex-end {
     margin-top: auto;
+}
+
+/* .rating-container {
+    align-self: center;    
+} */
+
+.xx-large {
+    font-size: xx-large;
 }
 
 .action-buttons-div {
