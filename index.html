@@ -29,30 +29,36 @@
         </main>
         
 
-        <div class="book-info">
+        <div id="book-information" class="book-info">
             <div class="book-info-content">
                 Title
-                <input>
+                <input id="title-input">
             </div>
             <div class="book-info-content">
                 Author
-                <input>
+                <input id="author-input">
             </div>
             <div class="book-info-content">
                 Pages
-                <input type="number">
+                <input id="pages-input" type="number">
             </div>
             <div class="book-info-content">
                 Read
                 <label class="switch">
-                    <input type="checkbox">
+                    <input id="status-input" type="checkbox">
                     <span class="slider round"></span>
                 </label>
             </div>
             <div class="book-info-content">
                 Rating
-
-            </div>
+                <div id="rating-input" class="rating-container">
+                    <span class="material-icons-outlined rating-star editable xx-large">grade</span>
+                    <span class="material-icons-outlined rating-star editable xx-large">grade</span>
+                    <span class="material-icons-outlined rating-star editable xx-large">grade</span>
+                    <span class="material-icons-outlined rating-star editable xx-large">grade</span>
+                    <span class="material-icons-outlined rating-star editable xx-large">grade</span>
+                    </div>
+                </div>
             <div class="book-info-content action-buttons-div flex-end">
                 <button class="action-button delete-button">Delete</button>
                 <button class="action-button save-button">Save</button>
