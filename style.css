@@ -22,6 +22,34 @@ header {
     grid-column: 1 / 4;
 }
 
+input {
+    border: none;
+    margin: 6px 0;;
+    background-color: var(--background);
+    padding: 12px 4px;
+    font-size: medium;
+}
+
+input:focus {
+    outline: none;
+    border-bottom: 2px solid rgb(184, 43, 197);
+}
+
+input[type=number] {
+    appearance: textfield;
+}
+
+button {
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.switch {
+    position: relative;
+
+}
+
+
 .material-icons-outlined {
     font-size: 24px;
     margin: 0 6px 0 0;
@@ -110,17 +138,41 @@ header {
     left: 30%;
     width: 40%;
     height: 80%;
-    background-color: red;
-    display: none; /* toggle to flex */
+    background-color: var(--card-color);
+    display: flex; /* toggle to flex */
     flex-direction: column;
     align-items: stretch;
 }
 
 .book-info-content {
-    height: 48px;
-    margin: 6px 12px;
+    margin: 16px 12px;
+    display: flex;
+    flex-direction: column;
 }
 
 .flex-end {
     margin-top: auto;
 }
+
+.action-buttons-div {
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.action-button {
+    border: none;
+    margin: 24px 32px;
+    flex-grow: 1;
+    font-size: medium;
+}
+
+.delete-button {
+    background-color: transparent;
+    color: red;
+    border: 1px solid red;
+}
+
+.save-button {
+    background-color: hotpink;
+}
+
