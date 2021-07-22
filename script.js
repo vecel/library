@@ -9,7 +9,8 @@ const bookDetails = {
     rating: bookDetailsDialog.querySelector('#rating-input')
 }
 const ratingStars = bookDetails.rating.children;
-
+const bookDetailsDeleteButton = document.querySelector('.delete-button');
+const bookDetailsSaveButton = document.querySelector('.save-button');
 
 function Book (id, title, author, pages, isRead, rating, insertionDate, readDate) {
     this.id = id;
@@ -27,9 +28,10 @@ Book.prototype.info = function() {
 
 const NUMBER_OF_STARS = 5;
 
-const theHobbit = new Book(0, 'The Hobbit', 'J.R.R. Tolkien', 295, true, 4);
+const theHobbit = new Book(0, 'The Hobbit', 'J.R.R. Tolkien', 295, true, 3);
 const lettersFromGrave = new Book(1, 'Listy Zza Grobu', 'Remigiusz Mróz', 457, false, 5);
 
+let editBook = false;
 let temporaryRating = -1;
 let library = [theHobbit, lettersFromGrave];
 
@@ -52,6 +54,27 @@ for (let i = 0; i < ratingStars.length; ++i) {
     })
 }
 
+bookDetailsDeleteButton.addEventListener('click', () => {
+    if (editBook) {
+        
+    }
+    if (!editBook) {
+        bookDetailsDialog.style.display = 'none';
+    }
+})
+
+bookDetailsSaveButton.addEventListener('click', () => {
+    if (editBook) {
+        
+    }
+    if (!editBook) {
+        const newBook = new Book(library.length, bookDetails.title.value, bookDetails.author.value, bookDetails.pages.value, bookDetails.status.value, temporaryRating);
+        library.push(newBook);
+        displayBook(newBook);
+        bookDetailsDialog.style.display = 'none';
+    }    
+})
+
 for (let book of library) displayBook(book);
 
 
@@ -60,7 +83,7 @@ function addBook() {
     /* show dialog window and ask for book properties */
 
     // const bookInfo = prompt('Enter book title / author / number of pages / is book read (true or false)').split('/');
-
+    editBook = false;
     showBookDetailsDialog();
     setBookDetailsContent();
 
@@ -100,6 +123,11 @@ function displayBook(book) {
         const itemId = Array.from(parent.childNodes).indexOf(item);
         const book = library[itemId - 1];
 
+        editBook = true;
+
+        showBookDetailsDialog();
+        setBookDetailsContent(book);
+
         console.log(itemId);
         console.log(book);
         
@@ -117,6 +145,9 @@ function setBookDetailsContent(book) {
     bookDetails.author.value = book === undefined ? '' : book.author;
     bookDetails.pages.value = book === undefined ? '' : book.pages;
     bookDetails.status.checked = book === undefined ? false : book.isRead;
+
+    temporaryRating = book === undefined ? -1 : book.rating - 1;
+    updateRating();
 }
 
 function updateRating() {
