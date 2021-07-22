@@ -83,24 +83,12 @@ for (let book of library) displayBook(book);
 
 
 
-function addBook() {
-    /* show dialog window and ask for book properties */
 
-    // const bookInfo = prompt('Enter book title / author / number of pages / is book read (true or false)').split('/');
+
+function addBook() {
     editBook = false;
     showBookDetailsDialog();
     setBookDetailsContent();
-
-    // const id = library.length;
-    // const title = bookInfo[0];
-    // const author = bookInfo[1];
-    // const pages = bookInfo[2].toString();
-    // const isRead = bookInfo[3] == 'true' ? true : false;
-
-    // const book = new Book(id, title, author, pages, isRead);
-    // library.push(book);
-
-    // displayBook(book);
 }
 
 function displayBook(book) {
