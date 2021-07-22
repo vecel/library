@@ -50,7 +50,7 @@ for (let i = 0; i < ratingStars.length; ++i) {
     })
 
     ratingStars[i].addEventListener('click', () => {
-        temporaryRating = i;
+        temporaryRating = i + 1;
         updateRating();
     })
 }
@@ -107,17 +107,7 @@ function displayBook(book) {
     const item = document.createElement('div');
     item.classList += 'item';
 
-    const itemContent = `<div class="card-content title"><h2>${book.title}</h2></div>
-    <div class="card-content">Author: ${book.author}</div>
-    <div class="card-content">Pages: ${book.pages}</div>
-    <div class="card-content is-read">Read: ${book.isRead ? 'YES' : 'NO'}</div>
-    <div class="card-content rating flex-end">
-    <span class="material-icons-outlined rating-star">grade</span>
-    <span class="material-icons-outlined rating-star">grade</span>
-    <span class="material-icons-outlined rating-star">grade</span>
-    <span class="material-icons-outlined rating-star">grade</span>
-    <span class="material-icons-outlined rating-star">grade</span>
-    </div>`
+    const itemContent = cardContent(book); 
 
     item.innerHTML = itemContent;
     
@@ -146,18 +136,7 @@ function showBookDetailsDialog() {
 
 function setCardItemContent(book) {
     const bookDiv = booksContainer.children[book.id];
-    bookDiv.innerHTML = 
-    `<div class="card-content title"><h2>${book.title}</h2></div>
-    <div class="card-content">Author: ${book.author}</div>
-    <div class="card-content">Pages: ${book.pages}</div>
-    <div class="card-content is-read">Read: ${book.isRead ? 'YES' : 'NO'}</div>
-    <div class="card-content rating flex-end">
-    <span class="material-icons-outlined rating-star">grade</span>
-    <span class="material-icons-outlined rating-star">grade</span>
-    <span class="material-icons-outlined rating-star">grade</span>
-    <span class="material-icons-outlined rating-star">grade</span>
-    <span class="material-icons-outlined rating-star">grade</span>
-    </div>`;
+    bookDiv.innerHTML = cardContent(book);
 }
 
 function deleteCard(cardIndex) {
@@ -174,11 +153,25 @@ function setBookDetailsContent(book) {
     bookDetails.pages.value = book === undefined ? '' : book.pages;
     bookDetails.status.checked = book === undefined ? false : book.isRead;
 
-    temporaryRating = book === undefined ? -1 : book.rating - 1;
+    temporaryRating = book === undefined ? 0 : book.rating;
     updateRating();
 }
 
 function updateRating() {
-    for (let i = 0; i <= temporaryRating; ++i) ratingStars[i].classList.add('material-icons');
-    for (let i = temporaryRating + 1; i < NUMBER_OF_STARS; ++i) ratingStars[i].classList.remove('material-icons');
+    for (let i = 0; i < temporaryRating; ++i) ratingStars[i].classList.add('material-icons');
+    for (let i = temporaryRating; i < NUMBER_OF_STARS; ++i) ratingStars[i].classList.remove('material-icons');
+}
+
+function cardContent(book) {
+    return `<div class="card-content title"><h2>${book.title}</h2></div>
+    <div class="card-content">Author: ${book.author}</div>
+    <div class="card-content">Pages: ${book.pages}</div>
+    <div class="card-content is-read">Read: ${book.isRead ? 'YES' : 'NO'}</div>
+    <div class="card-content rating flex-end">
+    <span class="material-icons rating-star">grade</span>
+    <span class="${book.rating > 1 ? 'material-icons' : 'material-icons-outlined'} rating-star">grade</span>
+    <span class="${book.rating > 2 ? 'material-icons' : 'material-icons-outlined'} rating-star">grade</span>
+    <span class="${book.rating > 3 ? 'material-icons' : 'material-icons-outlined'} rating-star">grade</span>
+    <span class="${book.rating > 4 ? 'material-icons' : 'material-icons-outlined'} rating-star">grade</span>
+    </div>`
 }
