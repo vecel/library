@@ -57,11 +57,9 @@ for (let i = 0; i < ratingStars.length; ++i) {
 
 bookDetailsDeleteButton.addEventListener('click', () => {
     if (editBook) {
-        
+        deleteCard(currentBookIndex);        
     }
-    if (!editBook) {
-        bookDetailsDialog.style.display = 'none';
-    }
+    bookDetailsDialog.style.display = 'none';
 })
 
 bookDetailsSaveButton.addEventListener('click', () => {
@@ -160,6 +158,14 @@ function setCardItemContent(book) {
     <span class="material-icons-outlined rating-star">grade</span>
     <span class="material-icons-outlined rating-star">grade</span>
     </div>`;
+}
+
+function deleteCard(cardIndex) {
+    booksContainer.children[cardIndex].remove();
+    for (let i = cardIndex + 1; i < library.length; ++i) {
+        library[i].id--;
+    }
+    library.splice(cardIndex, 1);
 }
 
 function setBookDetailsContent(book) {
