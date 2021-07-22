@@ -8,6 +8,7 @@ const bookDetails = {
     status: bookDetailsDialog.querySelector('#status-input'),
     rating: bookDetailsDialog.querySelector('#rating-input')
 }
+const ratingStars = bookDetails.rating.children;
 
 
 function Book (id, title, author, pages, isRead, rating, insertionDate, readDate) {
@@ -24,12 +25,32 @@ Book.prototype.info = function() {
     return `${this.id}, ${this.title} by ${this.author}, ${this.pages} pages, ${this.isRead ? 'already read' : 'not read yet'}`;
 }
 
+const NUMBER_OF_STARS = 5;
+
 const theHobbit = new Book(0, 'The Hobbit', 'J.R.R. Tolkien', 295, true, 4);
 const lettersFromGrave = new Book(1, 'Listy Zza Grobu', 'Remigiusz Mróz', 457, false, 5);
 
+let temporaryRating = -1;
 let library = [theHobbit, lettersFromGrave];
 
 addBookButton.addEventListener('click', addBook);
+
+for (let i = 0; i < ratingStars.length; ++i) {
+    ratingStars[i].addEventListener('mouseover', () => {
+        for (let k = 0; k <= i; ++k) ratingStars[k].classList.add('material-icons');
+        for (let k = i + 1; k < NUMBER_OF_STARS; ++k) ratingStars[k].classList.remove('material-icons');
+    })
+
+    ratingStars[i].addEventListener('mouseout', () => {
+        for (let k = 0; k <= i; ++k) ratingStars[k].classList.remove('material-icons');
+        updateRating();
+    })
+
+    ratingStars[i].addEventListener('click', () => {
+        temporaryRating = i;
+        updateRating();
+    })
+}
 
 for (let book of library) displayBook(book);
 
@@ -96,4 +117,9 @@ function setBookDetailsContent(book) {
     bookDetails.author.value = book === undefined ? '' : book.author;
     bookDetails.pages.value = book === undefined ? '' : book.pages;
     bookDetails.status.checked = book === undefined ? false : book.isRead;
+}
+
+function updateRating() {
+    for (let i = 0; i <= temporaryRating; ++i) ratingStars[i].classList.add('material-icons');
+    for (let i = temporaryRating + 1; i < NUMBER_OF_STARS; ++i) ratingStars[i].classList.remove('material-icons');
 }
