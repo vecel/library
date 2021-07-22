@@ -102,6 +102,10 @@ button {
     border-radius: 50%;
 }
 
+.material-icons {
+    font-size: 26px;
+}
+
 .material-icons-outlined {
     font-size: 24px;
     margin: 0 6px 0 0;
@@ -181,9 +185,10 @@ button {
     user-select: none;
 }
 
-/* .editable:hover {
-    
-} */
+.editable-star {
+    margin: 0;
+    padding: 2px 3px;
+}
 
 .vertical-line {
     border-left: 1px solid #707070;
