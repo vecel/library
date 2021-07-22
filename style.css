@@ -190,6 +190,7 @@ button {
 .editable-star {
     margin: 0;
     padding: 2px 3px;
+    cursor: pointer;
 }
 
 .vertical-line {
