@@ -32,6 +32,7 @@ const theHobbit = new Book(0, 'The Hobbit', 'J.R.R. Tolkien', 295, true, 3);
 const lettersFromGrave = new Book(1, 'Listy Zza Grobu', 'Remigiusz Mróz', 457, false, 5);
 
 let editBook = false;
+let currentBookIndex = -1;
 let temporaryRating = -1;
 let library = [theHobbit, lettersFromGrave];
 
@@ -65,14 +66,19 @@ bookDetailsDeleteButton.addEventListener('click', () => {
 
 bookDetailsSaveButton.addEventListener('click', () => {
     if (editBook) {
-        
+        library[currentBookIndex].title =  bookDetails.title.value;
+        library[currentBookIndex].author = bookDetails.author.value;
+        library[currentBookIndex].pages = bookDetails.pages.value;
+        library[currentBookIndex].isRead = bookDetails.status.checked;
+        library[currentBookIndex].rating = temporaryRating;
+        setCardItemContent(library[currentBookIndex]);
     }
     if (!editBook) {
-        const newBook = new Book(library.length, bookDetails.title.value, bookDetails.author.value, bookDetails.pages.value, bookDetails.status.value, temporaryRating);
+        const newBook = new Book(library.length, bookDetails.title.value, bookDetails.author.value, bookDetails.pages.value, bookDetails.status.checked, temporaryRating);
         library.push(newBook);
         displayBook(newBook);
-        bookDetailsDialog.style.display = 'none';
     }    
+    bookDetailsDialog.style.display = 'none';
 })
 
 for (let book of library) displayBook(book);
@@ -103,18 +109,17 @@ function displayBook(book) {
     const item = document.createElement('div');
     item.classList += 'item';
 
-    const itemContent = 
-        `<div class="card-content title"><h2>${book.title}</h2></div>
-        <div class="card-content">Author: ${book.author}</div>
-        <div class="card-content">Pages: ${book.pages}</div>
-        <div class="card-content is-read">Read: ${book.isRead ? 'YES' : 'NO'}</div>
-        <div class="card-content rating flex-end">
-        <span class="material-icons-outlined rating-star">grade</span>
-        <span class="material-icons-outlined rating-star">grade</span>
-        <span class="material-icons-outlined rating-star">grade</span>
-        <span class="material-icons-outlined rating-star">grade</span>
-        <span class="material-icons-outlined rating-star">grade</span>
-        </div>`;
+    const itemContent = `<div class="card-content title"><h2>${book.title}</h2></div>
+    <div class="card-content">Author: ${book.author}</div>
+    <div class="card-content">Pages: ${book.pages}</div>
+    <div class="card-content is-read">Read: ${book.isRead ? 'YES' : 'NO'}</div>
+    <div class="card-content rating flex-end">
+    <span class="material-icons-outlined rating-star">grade</span>
+    <span class="material-icons-outlined rating-star">grade</span>
+    <span class="material-icons-outlined rating-star">grade</span>
+    <span class="material-icons-outlined rating-star">grade</span>
+    <span class="material-icons-outlined rating-star">grade</span>
+    </div>`
 
     item.innerHTML = itemContent;
     
@@ -123,6 +128,7 @@ function displayBook(book) {
         const itemId = Array.from(parent.childNodes).indexOf(item);
         const book = library[itemId - 1];
 
+        currentBookIndex = itemId - 1;
         editBook = true;
 
         showBookDetailsDialog();
@@ -138,6 +144,22 @@ function displayBook(book) {
 
 function showBookDetailsDialog() {
     bookDetailsDialog.style.display = 'flex';
+}
+
+function setCardItemContent(book) {
+    const bookDiv = booksContainer.children[book.id];
+    bookDiv.innerHTML = 
+    `<div class="card-content title"><h2>${book.title}</h2></div>
+    <div class="card-content">Author: ${book.author}</div>
+    <div class="card-content">Pages: ${book.pages}</div>
+    <div class="card-content is-read">Read: ${book.isRead ? 'YES' : 'NO'}</div>
+    <div class="card-content rating flex-end">
+    <span class="material-icons-outlined rating-star">grade</span>
+    <span class="material-icons-outlined rating-star">grade</span>
+    <span class="material-icons-outlined rating-star">grade</span>
+    <span class="material-icons-outlined rating-star">grade</span>
+    <span class="material-icons-outlined rating-star">grade</span>
+    </div>`;
 }
 
 function setBookDetailsContent(book) {
