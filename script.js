@@ -12,18 +12,30 @@ const ratingStars = bookDetails.rating.children;
 const bookDetailsDeleteButton = document.querySelector('.delete-button');
 const bookDetailsSaveButton = document.querySelector('.save-button');
 
-function Book (id, title, author, pages, isRead, rating, insertionDate, readDate) {
-    this.id = id;
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.isRead = isRead;
-    this.rating = rating;
-    this.insertionDate = insertionDate;
-}
+// function Book (id, title, author, pages, isRead, rating, insertionDate, readDate) {
+//     this.id = id;
+//     this.title = title;
+//     this.author = author;
+//     this.pages = pages;
+//     this.isRead = isRead;
+//     this.rating = rating;
+//     this.insertionDate = insertionDate;
+// }
 
-Book.prototype.info = function() {
-    return `${this.id}, ${this.title} by ${this.author}, ${this.pages} pages, ${this.isRead ? 'already read' : 'not read yet'}`;
+class Book {
+    constructor(id, title, author, pages, isRead, rating, insertionDate, readDate) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.isRead = isRead;
+        this.rating = rating;
+        this.insertionDate = insertionDate;
+    }
+
+    info() {
+        return `${this.id}, ${this.title} by ${this.author}, ${this.pages} pages, ${this.isRead ? 'already read' : 'not read yet'}`;    
+    }
 }
 
 const NUMBER_OF_STARS = 5;
